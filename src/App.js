@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import TodoDetailContainer from './components/todo-detail/TodoDetailContainer';
+import TodoMain from './components/todo-main/TodoMain';
 
-function App() {
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="todo">
+      <Routes>
+        <Route path="/" element={<TodoMain/>}/>
+        <Route path='/task/:id' element={<TodoDetailContainer/>}/>
+      </Routes>
     </div>
   );
 }
 
-export default App;
+export default App

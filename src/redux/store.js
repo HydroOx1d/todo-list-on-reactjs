@@ -1,11 +1,14 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import { authReducer } from "./authReducer.";
 import { tasksReducer } from "./tasksReducer";
+import thunk from "redux-thunk";
 
 const reducers = combineReducers({
-  todo: tasksReducer
+  todo: tasksReducer,
+  auth: authReducer,
 })
 
-const store = createStore(reducers)
+const store = createStore(reducers, applyMiddleware(thunk))
 
 
 window.store = store

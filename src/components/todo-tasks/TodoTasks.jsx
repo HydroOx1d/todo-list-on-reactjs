@@ -10,7 +10,7 @@ const TodoTasks = (props) => {
           {props.tasks.map((task) => {
             return (
               <div className="todo-task" key={task.id}>
-                <span className="todo-task__number">{task.id}</span>
+                <span className="todo-task__number">----------</span>
                 <h4 className="todo-task__title"> <NavLink to={"/task/" + task.id}>{task.title}</NavLink> </h4>
                 <span onClick={() => props.removeTask(task.id)} className="todo-task__delete">Delete</span>
               </div>

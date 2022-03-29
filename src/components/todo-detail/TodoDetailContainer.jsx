@@ -9,7 +9,7 @@ class TodoDetailContainer extends React.Component {
 
   componentDidMount() {
     let taskId = this.props.match.params.id
-    this.props.getDetailTask(Number(taskId));
+    this.props.getDetailTask(taskId);
   }
 
 

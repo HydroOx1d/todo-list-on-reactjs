@@ -3,6 +3,7 @@ import "../../App.css";
 import TodoAddContainer from "../../components/todo-add/TodoAddContainer";
 import TodoHeader from "../../components/todo-header/TodoHeader";
 import TodoTasksContainer from "../../components/todo-tasks/TodoTasksContainer";
+import { requireAuth } from "../../hoc/requireAuth";
 
 const TodoMain = (props) => {
   return (
@@ -16,10 +17,4 @@ const TodoMain = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    tasks: state.todo.tasks,
-  };
-};
-
-export default connect(mapStateToProps)(TodoMain);
+export default TodoMain

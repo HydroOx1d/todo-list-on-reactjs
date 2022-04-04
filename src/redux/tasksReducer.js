@@ -31,7 +31,7 @@ export const tasksReducer = (state = initialState, action) => {
     case "GET-DETAIL-TASK": {
       return {
         ...state,
-        detailTask: state.tasks.filter((t) => t.id === action.id),
+        detailTask: state.tasks.filter((t) => t.data.id === action.id),
       };
     }
     default:
@@ -68,13 +68,17 @@ export const getDetailTask = (id) => {
 };
 
 export const getTasksData = (uid) => (dispatch) => {
-  const starCountRef = ref(database, uid + "/tasks");
-  onValue(starCountRef, (snapshot) => {
+  const tasksRef = ref(database, uid + "/tasks");
+  onValue(tasksRef, (snapshot) => {
     const data = snapshot.val();
-    let resultArr = []
-    for(let i in data) {
-      resultArr.push(data[i])
+    let resultArr = [];
+    for (let i in data) {
+      resultArr.push({
+        taskId: i,
+        data: data[i],
+      });
     }
-    dispatch(addTask(resultArr))
+    dispatch(addTask(resultArr));
+    // console.log(resultArr)
   });
 };

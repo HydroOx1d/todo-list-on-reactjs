@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { database } from "../../firebaseConfig";
+import {remove, ref} from 'firebase/database'
 
 const TodoTasks = (props) => {
   return (
@@ -9,10 +11,12 @@ const TodoTasks = (props) => {
         <div className="todo-tasks main-padding">
           {props.tasks.map((task) => {
             return (
-              <div className="todo-task" key={task.id}>
+              <div className="todo-task" key={task.data.id}>
                 <span className="todo-task__number">----------</span>
-                <h4 className="todo-task__title"> <NavLink to={"/task/" + task.id}>{task.title}</NavLink> </h4>
-                <span onClick={() => props.removeTask(task.id)} className="todo-task__delete">Delete</span>
+                <h4 className="todo-task__title"> <NavLink to={"/task/" + task.data.id}>{task.data.title}</NavLink> </h4>
+                <span onClick={() => {
+                  remove(ref(database, props.uid + "/tasks/" + task.taskId));
+                }} className="todo-task__delete">Delete</span>
               </div>
             );
           })}

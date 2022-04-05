@@ -31,7 +31,7 @@ export const tasksReducer = (state = initialState, action) => {
     case "GET-DETAIL-TASK": {
       return {
         ...state,
-        detailTask: state.tasks.filter((t) => t.data.id === action.id),
+        detailTask: action.taskData,
       };
     }
     default:
@@ -60,10 +60,10 @@ export const updateValue = (value) => {
   };
 };
 
-export const getDetailTask = (id) => {
+export const getDetailTask = (taskData) => {
   return {
     type: "GET-DETAIL-TASK",
-    id,
+    taskData,
   };
 };
 

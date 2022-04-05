@@ -5,10 +5,9 @@ const TodoDetail = (props) => {
     return <h1>Loading...</h1>
   }
   
-
   return (
     <div className="task-detail">
-      <h1>{props.detailTask[0].data.title}</h1>
+      <h1>{props.detailTask.title}</h1>
     </div>
   )
 }

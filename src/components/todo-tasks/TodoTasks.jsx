@@ -13,7 +13,7 @@ const TodoTasks = (props) => {
             return (
               <div className="todo-task" key={task.data.id}>
                 <span className="todo-task__number">----------</span>
-                <h4 className="todo-task__title"> <NavLink to={"/task/" + task.data.id}>{task.data.title}</NavLink> </h4>
+                <h4 className="todo-task__title"> <NavLink to={"/task/" + task.taskId}>{task.data.title}</NavLink> </h4>
                 <span onClick={() => {
                   remove(ref(database, props.uid + "/tasks/" + task.taskId));
                 }} className="todo-task__delete">Delete</span>

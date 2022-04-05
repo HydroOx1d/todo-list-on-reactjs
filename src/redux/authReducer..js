@@ -1,3 +1,7 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+
+
 let inititalState = {
   isAuth: false,
 
@@ -19,27 +23,38 @@ export const authReducer = (state = inititalState, action) => {
         ...state,
         isAuth: false,
         uid: null,
-        email: null
-      }
+        email: null,
+      };
     }
     default: {
       return state;
     }
   }
-}
+};
 
 export const getAuthData = (uid, email) => {
   return {
     type: "GET-AUTH-DATA",
     authData: {
       uid,
-      email
-    }
+      email,
+    },
   };
-}
+};
 
 export const logout = () => {
   return {
     type: "LOGOUT",
   };
-}
+};
+
+export const getAuthDataThunk = () => {
+  return (dispatch) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email } = user;
+        dispatch(getAuthData(uid, email));
+      }
+    });
+  };
+};

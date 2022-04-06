@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import './App.css'
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/login/Login";
 import TodoDetailContainer from "./components/todo-detail/TodoDetailContainer";

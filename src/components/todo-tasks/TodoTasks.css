@@ -1,0 +1,27 @@
+.todo-task {
+  border: 1px solid #04040433;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 9px;
+  font-size: 18px;
+}
+
+.todo-task:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.todo-task__title {
+  margin-left: 50px;
+}
+
+.todo-task__delete {
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  display: inline-block;
+  background-color: red;
+  margin-left: auto;
+  padding: 2px 7px;
+  border-radius: 4px;
+}

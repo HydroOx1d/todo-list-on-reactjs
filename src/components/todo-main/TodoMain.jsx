@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import "../../App.css";
+import "./TodoMain.css";
 import TodoAddContainer from "../../components/todo-add/TodoAddContainer";
 import TodoHeader from "../../components/todo-header/TodoHeader";
 import TodoTasksContainer from "../../components/todo-tasks/TodoTasksContainer";

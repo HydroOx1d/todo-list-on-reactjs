@@ -1,23 +1,25 @@
 import React, { useEffect } from "react";
 import TodoMain from "./TodoMain";
 import { connect } from "react-redux";
-// import {requireAuth} from '../../hoc/requireAuth'
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
-import { getAuthData } from "../../redux/authReducer.";
+import { getAuthDataThunk, initialAppThunk } from "../../redux/authReducer.";
 import { Navigate } from "react-router-dom";
+import { MainPreloader } from "../common/loader/MainPreloader";
 
 const TodoMainContainer = (props) => {
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, email } = user;
-        props.getAuthData(uid, email);
-      }
-    });
+    props.getAuthDataThunk();
+  }, [props.isAuth])
+
+  useEffect(() => {
+    props.initialAppThunk()
   }, [])
 
+  if(!props.initialApp) {
+    return <MainPreloader/>
+  }
+
   if (!props.isAuth) return <Navigate to="/login" />;
+
   return <TodoMain {...props} />;
 };
 
@@ -25,9 +27,12 @@ const mapStateToProps = (state) => {
   return {
     tasks: state.todo.tasks,
     isAuth: state.auth.isAuth,
+
+    initialApp: state.auth.initialApp
   };
 };
 
-// const withAuth = requireAuth(TodoMainContainer);
 
-export default connect(mapStateToProps, { getAuthData })(TodoMainContainer);
+export default connect(mapStateToProps, { getAuthDataThunk, initialAppThunk })(
+  TodoMainContainer
+);

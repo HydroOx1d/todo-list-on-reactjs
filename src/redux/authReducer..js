@@ -7,6 +7,7 @@ let inititalState = {
 
   uid: null,
   email: null,
+  initialApp: false
 };
 
 export const authReducer = (state = inititalState, action) => {
@@ -24,6 +25,12 @@ export const authReducer = (state = inititalState, action) => {
         isAuth: false,
         uid: null,
         email: null,
+      };
+    }
+    case "INITIAL-APP": {
+      return {
+        ...state,
+        initialApp: true
       };
     }
     default: {
@@ -48,13 +55,28 @@ export const logout = () => {
   };
 };
 
+const initialApp = () => ({
+  type: "INITIAL-APP",
+});
+
 export const getAuthDataThunk = () => {
   return (dispatch) => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, email } = user;
-        dispatch(getAuthData(uid, email));
-      }
-    });
+    return new Promise((resolve, reject) => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          resolve(user)
+        }
+      });
+    }).then(userData => {
+      const { uid, email } = userData;
+      dispatch(getAuthData(uid, email));
+    })
   };
 };
+
+export const initialAppThunk = () => dispatch => {
+  let getAuthDataPromise = dispatch(getAuthDataThunk());
+  getAuthDataPromise.then(() => {
+    dispatch(initialApp());
+  });
+}

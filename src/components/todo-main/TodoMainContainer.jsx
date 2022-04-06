@@ -13,12 +13,13 @@ const TodoMainContainer = (props) => {
   useEffect(() => {
     props.initialAppThunk()
   }, [])
-
-  if(!props.initialApp) {
-    return <MainPreloader/>
+  
+  if (!props.initialApp) {
+    return <MainPreloader />;
   }
 
-  if (!props.isAuth) return <Navigate to="/login" />;
+  if(!props.isAuth) return <Navigate to="/login"/>
+
 
   return <TodoMain {...props} />;
 };

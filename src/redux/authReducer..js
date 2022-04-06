@@ -66,11 +66,12 @@ export const getAuthDataThunk = () => {
         if (user) {
           resolve(user)
         }
+        reject('Not authorized')
       });
     }).then(userData => {
       const { uid, email } = userData;
       dispatch(getAuthData(uid, email));
-    })
+    }).catch(e => e)
   };
 };
 

@@ -8,11 +8,11 @@ const mapStateToProps = (state) => {
 }
 
 export const requireAuth = (Component) => {
-  let withAuth = (props) => {
+  let WithAuth = (props) => {
     if(!props.isAuth) {
       return <Navigate to="/login"/>
     }
     return <Component {...props}/>
   }
-  return connect(mapStateToProps)(withAuth)
+  return connect(mapStateToProps)(WithAuth)
 }

@@ -1,8 +1,8 @@
-
+import {MainPreloader} from '../common/loader/MainPreloader'
 
 const TodoDetail = (props) => {
   if(!props.detailTask) {
-    return <h1>Loading...</h1>
+    return <MainPreloader/>
   }
   
   return (

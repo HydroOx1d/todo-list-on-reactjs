@@ -13,13 +13,6 @@ export const tasksReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: [...action.task],
-        addTaskInputValue: "",
-      };
-    }
-    case "UPDATE-INPUT-VALUE": {
-      return {
-        ...state,
-        addTaskInputValue: action.value,
       };
     }
     case "REMOVE-TASK": {

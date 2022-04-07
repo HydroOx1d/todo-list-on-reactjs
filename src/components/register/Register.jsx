@@ -34,6 +34,11 @@ const Register = (props) => {
                 </div>
               )}
             </Field>
+            {!props.authSuccess && (
+              <div className="error login__error">
+                <span>{props.errMessage}</span>
+              </div>
+            )}
             <button className="button register__button">Register</button>
           </form>
         )}

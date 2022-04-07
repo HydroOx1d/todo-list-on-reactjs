@@ -4,8 +4,15 @@ import { Navigate } from "react-router-dom";
 import { auth } from "../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Login from "./Login";
+import { useEffect } from "react";
 
 const LoginContainer = (props) => {
+  useEffect(() => {
+    return () => {
+      props.handleAuthErr(true, "");
+    };
+  }, []);
+
   if (props.isAuth) {
     return <Navigate to="/" />;
   }
@@ -17,17 +24,17 @@ const LoginContainer = (props) => {
         const user = userCredential.user;
         const { uid, email } = user;
         props.getAuthData(uid, email);
-        props.handleAuthErr(true, '');
+        props.handleAuthErr(true, "");
       })
-      .catch(err => {
-        if(err.message === 'Firebase: Error (auth/user-not-found).') {
+      .catch((err) => {
+        if (err.message === "Firebase: Error (auth/user-not-found).") {
           props.handleAuthErr(false, "Incorrect email");
         } else {
-          if(err.message === 'Firebase: Error (auth/wrong-password).') {
+          if (err.message === "Firebase: Error (auth/wrong-password).") {
             props.handleAuthErr(false, "Incorrect email or password");
           }
         }
-      })
+      });
   };
 
   return <Login {...props} loginSubmit={loginSubmit} />;

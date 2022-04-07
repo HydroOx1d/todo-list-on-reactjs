@@ -32,13 +32,19 @@ const Login = (props) => {
                 </div>
               )}
             </Field>
+            {!props.authSuccess && (
+              <div className="error login__error">
+                <span>{props.errMessage}</span>
+              </div>
+            )}
             <button className="button login__button">Login</button>
           </form>
         )}
       </Form>
       <hr className="hr login__hr" />
       <div className="question login__question">
-        <span>Do you don't have an account?</span> - <NavLink to="/register">Create account</NavLink>
+        <span>Do you don't have an account?</span> -{" "}
+        <NavLink to="/register">Create account</NavLink>
       </div>
     </div>
   );

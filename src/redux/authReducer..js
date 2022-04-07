@@ -7,7 +7,10 @@ let inititalState = {
 
   uid: null,
   email: null,
-  initialApp: false
+  initialApp: false,
+
+  authSuccess: true,
+  errMessage: '',
 };
 
 export const authReducer = (state = inititalState, action) => {
@@ -32,6 +35,13 @@ export const authReducer = (state = inititalState, action) => {
         ...state,
         initialApp: true
       };
+    }
+    case "HANDLE-AUTH-ERR": {
+      return {
+        ...state,
+        authSuccess: action.status,
+        errMessage: action.message
+      }
     }
     default: {
       return state;
@@ -58,6 +68,13 @@ export const logout = () => {
 const initialApp = () => ({
   type: "INITIAL-APP",
 });
+
+export const handleAuthErr = (status, message) => {
+  return {
+    type: "HANDLE-AUTH-ERR",
+    status, message
+  };
+} 
 
 export const getAuthDataThunk = () => {
   return (dispatch) => {

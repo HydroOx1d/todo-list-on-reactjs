@@ -76,3 +76,7 @@
 .question a:hover {
   opacity: .6;
 }
+
+.error {
+  margin: 10px 0;
+}

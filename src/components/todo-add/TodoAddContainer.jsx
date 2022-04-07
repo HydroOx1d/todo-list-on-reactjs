@@ -7,26 +7,26 @@ import { database } from "../../firebaseConfig";
 
 const TodoAddContainer = (props) => {
 
-  // const onAddTask = () => {
-  //   let result = "";
-  //   let num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((el) => el.toString());
-  //   let str = "abcdefghijklmnopqrstuvwxyz".split('');
+  const onAddTask = (formObj) => {
+    let result = "";
+    let num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((el) => el.toString());
+    let str = "abcdefghijklmnopqrstuvwxyz".split('');
 
-  //   for (let i = 0; i <= 10; i++) {
-  //     let idx = Math.floor(Math.random() * str.length);
-  //     let idx2 = Math.floor(Math.random() * num.length);
-  //     result += str[idx] + num[idx2];
-  //   }
+    for (let i = 0; i <= 10; i++) {
+      let idx = Math.floor(Math.random() * str.length);
+      let idx2 = Math.floor(Math.random() * num.length);
+      result += str[idx] + num[idx2];
+    }
 
-  //   const tasksList = ref(database, props.uid + "/tasks");
-  //   const newTask = push(tasksList);
-  //   set(newTask, {
-  //     id: result,
-  //     title: props.inputValue ? props.inputValue : "Empty area",
-  //   });
-  // };
+    const tasksList = ref(database, props.uid + "/tasks");
+    const newTask = push(tasksList);
+    set(newTask, {
+      id: result,
+      ...formObj
+    });
+  };
 
-  return <TodoAdd {...props} />;
+  return <TodoAdd {...props} onAddTask={onAddTask}/>;
 };
 
 const mapStateToProps = (state) => {

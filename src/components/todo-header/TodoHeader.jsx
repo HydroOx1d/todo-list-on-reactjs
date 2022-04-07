@@ -6,7 +6,6 @@ import { auth } from "../../firebaseConfig";
 import {signOut} from 'firebase/auth'
 
 const TodoHeader = (props) => {
-  let navigate = useNavigate()
   return (
     <div className="todo-header">
       <div className="tasks-counter">

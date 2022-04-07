@@ -5,6 +5,8 @@ export const emailValidation = () => {
   };
 };
 
+export const required = (value) => value ? undefined : "Required Field"
+
 export const minValue = (min) => {
   return (value) => {
     if (value === undefined) {

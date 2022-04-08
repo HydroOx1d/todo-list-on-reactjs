@@ -1,29 +1,36 @@
+import { useState } from "react";
 import "./TodoHeader.css"
-import { NavLink, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { logout } from "../../redux/authReducer.";
-import { auth } from "../../firebaseConfig";
-import {signOut} from 'firebase/auth'
+import Logout from '../../assets/logout.png'
+import { NavLink} from "react-router-dom";
 
 const TodoHeader = (props) => {
+  
+  const [isMenu, setIsMenu] = useState(false)
+
   return (
     <div className="todo-header">
       <div className="tasks-counter">
-        <span>Tasks count: {props.tasksLength.length}</span>
+        <span>Todo App</span>
       </div>
       <div className="header-login">
         {props.email ? (
           <>
-            <div>
+            <div onClick={() => setIsMenu(!isMenu)} className="header-login__name">
               <span>{props.email}</span>
             </div>
-            <div>
-              <button onClick={() => {
-                signOut(auth).then(() => {
-                  props.logout()
-                })
-              }}>Logout</button>
-            </div>
+            {isMenu && (
+              <div className="header-login__menu">
+                <div
+                  onClick={() => props.onLogout()}
+                  className="header-menu__item"
+                >
+                  <div className="header-menu__icon">
+                    <img src={Logout} alt="logout" />
+                  </div>
+                  <span>Logout</span>
+                </div>
+              </div>
+            )}
           </>
         ) : (
           <NavLink to="/login">
@@ -35,10 +42,5 @@ const TodoHeader = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    email: state.auth.email
-  }
-}
 
-export default connect(mapStateToProps, { logout })(TodoHeader);
+export default TodoHeader

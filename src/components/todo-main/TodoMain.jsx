@@ -1,12 +1,12 @@
 import "./TodoMain.css";
 import TodoAddContainer from "../../components/todo-add/TodoAddContainer";
-import TodoHeader from "../../components/todo-header/TodoHeader";
 import TodoTasksContainer from "../../components/todo-tasks/TodoTasksContainer";
+import TodoHeaderContainer from "../todo-header/TodoHeaderContainer";
 
 const TodoMain = (props) => {
   return (
     <div className="todo">
-      <TodoHeader tasksLength={props.tasks} />
+      <TodoHeaderContainer tasksLength={props.tasks} />
 
       <TodoAddContainer />
 

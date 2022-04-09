@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import TodoAdd from "./TodoAdd";
 import { ref, set, push } from "firebase/database";
 import { database } from "../../firebaseConfig";
+import {dateAndTime} from '../common/dateformat/dateFormat'
 
 
 const TodoAddContainer = (props) => {
@@ -22,6 +23,9 @@ const TodoAddContainer = (props) => {
     const newTask = push(tasksList);
     set(newTask, {
       id: result,
+      date: dateAndTime('date'),
+      time: dateAndTime('time'),
+      status: 'In progress',
       ...formObj
     });
   };

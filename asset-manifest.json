@@ -1,14 +1,30 @@
 {
   "files": {
-    "main.css": "/todo-list-on-reactjs/static/css/main.e2750890.css",
-    "main.js": "/todo-list-on-reactjs/static/js/main.b114cb11.js",
+    "main.css": "/todo-list-on-reactjs/static/css/main.334f2ead.css",
+    "main.js": "/todo-list-on-reactjs/static/js/main.b801a867.js",
+    "static/js/899.d1861c8a.chunk.js": "/todo-list-on-reactjs/static/js/899.d1861c8a.chunk.js",
+    "static/css/875.c76127ce.chunk.css": "/todo-list-on-reactjs/static/css/875.c76127ce.chunk.css",
+    "static/js/875.db209cf9.chunk.js": "/todo-list-on-reactjs/static/js/875.db209cf9.chunk.js",
+    "static/css/889.5566d5b6.chunk.css": "/todo-list-on-reactjs/static/css/889.5566d5b6.chunk.css",
+    "static/js/889.db7b4f5e.chunk.js": "/todo-list-on-reactjs/static/js/889.db7b4f5e.chunk.js",
+    "static/css/947.66b8c3db.chunk.css": "/todo-list-on-reactjs/static/css/947.66b8c3db.chunk.css",
+    "static/js/947.b1a7f08f.chunk.js": "/todo-list-on-reactjs/static/js/947.b1a7f08f.chunk.js",
+    "static/js/78.083e8223.chunk.js": "/todo-list-on-reactjs/static/js/78.083e8223.chunk.js",
     "static/media/MainLoader.svg": "/todo-list-on-reactjs/static/media/MainLoader.4dd59c4610d4eef6fd8db95ef366641b.svg",
     "index.html": "/todo-list-on-reactjs/index.html",
-    "main.e2750890.css.map": "/todo-list-on-reactjs/static/css/main.e2750890.css.map",
-    "main.b114cb11.js.map": "/todo-list-on-reactjs/static/js/main.b114cb11.js.map"
+    "main.334f2ead.css.map": "/todo-list-on-reactjs/static/css/main.334f2ead.css.map",
+    "main.b801a867.js.map": "/todo-list-on-reactjs/static/js/main.b801a867.js.map",
+    "899.d1861c8a.chunk.js.map": "/todo-list-on-reactjs/static/js/899.d1861c8a.chunk.js.map",
+    "875.c76127ce.chunk.css.map": "/todo-list-on-reactjs/static/css/875.c76127ce.chunk.css.map",
+    "875.db209cf9.chunk.js.map": "/todo-list-on-reactjs/static/js/875.db209cf9.chunk.js.map",
+    "889.5566d5b6.chunk.css.map": "/todo-list-on-reactjs/static/css/889.5566d5b6.chunk.css.map",
+    "889.db7b4f5e.chunk.js.map": "/todo-list-on-reactjs/static/js/889.db7b4f5e.chunk.js.map",
+    "947.66b8c3db.chunk.css.map": "/todo-list-on-reactjs/static/css/947.66b8c3db.chunk.css.map",
+    "947.b1a7f08f.chunk.js.map": "/todo-list-on-reactjs/static/js/947.b1a7f08f.chunk.js.map",
+    "78.083e8223.chunk.js.map": "/todo-list-on-reactjs/static/js/78.083e8223.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e2750890.css",
-    "static/js/main.b114cb11.js"
+    "static/css/main.334f2ead.css",
+    "static/js/main.b801a867.js"
   ]
 }

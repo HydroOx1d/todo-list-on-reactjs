@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { useState , useRef, useEffect} from "react";
 import "./TodoHeader.css"
 import Logout from '../../assets/logout.png'
 import { NavLink} from "react-router-dom";
 
 const TodoHeader = (props) => {
-  
+
+  const menu = useRef()
+  const login = useRef()
   const [isMenu, setIsMenu] = useState(false)
+
+  const handleClick = (e) => {
+    if(e.target !== menu.current && e.target !== login.current) {
+      setIsMenu(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('click', handleClick)
+    return () => {
+      window.removeEventListener('click', handleClick)
+    }
+  }, [])
+  
 
   return (
     <div className="todo-header">
@@ -16,10 +32,10 @@ const TodoHeader = (props) => {
         {props.email ? (
           <>
             <div onClick={() => setIsMenu(!isMenu)} className="header-login__name">
-              <span>{props.email}</span>
+              <span ref={login}>{props.email}</span>
             </div>
             {isMenu && (
-              <div className="header-login__menu">
+              <div ref={menu} className="header-login__menu">
                 <div
                   onClick={() => props.onLogout()}
                   className="header-menu__item"

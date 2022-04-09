@@ -1,27 +1,67 @@
-.todo-task {
-  border: 1px solid #04040433;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 9px;
-  font-size: 18px;
+.todo-tasks {
+  overflow-x: scroll;
 }
 
-.todo-task:not(:last-child) {
-  margin-bottom: 15px;
+.todo-task__link a{
+  text-decoration: underline;
+}
+.todo-task__link a:hover{
+  text-decoration: none;
 }
 
-.todo-task__title {
-  margin-left: 50px;
+
+.table {
+  width: 1370px;
+  margin: 0 auto 20px;
+
+  border: none;
+
+  margin-bottom: 20px;
+  border-collapse: collapse;
 }
 
-.todo-task__delete {
-  cursor: pointer;
+.table thead th {
+  font-weight: bold;
+
+  text-align: center;
+
+  border: none;
+
+  padding: 10px 15px;
+
+  background: #d8d8d8;
+
   font-size: 14px;
-  color: #fff;
-  display: inline-block;
-  background-color: red;
-  margin-left: auto;
-  padding: 2px 7px;
-  border-radius: 4px;
+
+  border-left: 1px solid #ddd;
+
+  border-right: 1px solid #ddd;
+}
+
+.table tbody td {
+  text-align: center;
+
+  border-left: 1px solid #ddd;
+
+  border-right: 1px solid #ddd;
+
+  padding: 10px 15px;
+
+  font-size: 14px;
+
+  vertical-align: top;
+}
+
+.table thead tr th:first-child,
+.table tbody tr td:first-child {
+  border-left: none;
+}
+
+.table thead tr th:last-child,
+.table tbody tr td:last-child {
+  border-right: none;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #f3f3f3;
 }

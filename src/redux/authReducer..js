@@ -1,4 +1,9 @@
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
 
@@ -91,6 +96,53 @@ export const getAuthDataThunk = () => {
     }).catch(e => e)
   };
 };
+
+export const signIn = (email, password) => {
+  return dispatch => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const { uid, email } = user;
+        dispatch(getAuthData(uid, email));
+        dispatch(handleAuthErr(true, ""));
+      })
+      .catch((err) => {
+        if (err.message === "Firebase: Error (auth/user-not-found).") {
+          dispatch(handleAuthErr(false, "Incorrect email"));
+        } else {
+          if (err.message === "Firebase: Error (auth/wrong-password).") {
+            dispatch(handleAuthErr(false, "Incorrect email or password"));
+          }
+        }
+      });
+  }
+}
+
+export const signUp = (email, password) => {
+  return dispatch => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const { uid, email } = user;
+        dispatch(getAuthData(uid, email));
+      })
+      .catch((err) => {
+        if (err.message === "Firebase: Error (auth/email-already-in-use).") {
+          dispatch(handleAuthErr(false, "This email is already registered"));
+        } else if (err.message === "Firebase: Error (auth/invalid-email).") {
+          dispatch(handleAuthErr(false, "This email is already registered"));
+        }
+      });
+  }
+}
+
+export const logoutThunk = () => {
+  return dispatch => {
+    signOut(auth).then(() => {
+      dispatch(logout());
+    });
+  }
+}
 
 export const initialAppThunk = () => dispatch => {
   let getAuthDataPromise = dispatch(getAuthDataThunk());

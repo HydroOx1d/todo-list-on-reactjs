@@ -1,15 +1,11 @@
 import "./TodoHeader.css";
 import { connect } from "react-redux";
-import { logout } from "../../redux/authReducer.";
-import { auth } from "../../firebaseConfig";
-import { signOut } from "firebase/auth";
+import { logoutThunk } from "../../redux/authReducer.";
 import TodoHeader from "./TodoHeader";
 
 const TodoHeaderContainer = (props) => {
   const onLogout = () => {
-    signOut(auth).then(() => {
-      props.logout();
-    });
+    props.logoutThunk()
   }
 
   return <TodoHeader {...props} onLogout={onLogout} />;
@@ -21,4 +17,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { logout })(TodoHeaderContainer);
+export default connect(mapStateToProps, { logoutThunk })(TodoHeaderContainer);

@@ -1,8 +1,6 @@
 import { connect } from "react-redux";
-import { getAuthData, handleAuthErr } from "../../redux/authReducer.";
+import { getAuthData, handleAuthErr, signIn } from "../../redux/authReducer.";
 import { Navigate } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import Login from "./Login";
 import { useEffect } from "react";
 
@@ -19,22 +17,8 @@ const LoginContainer = (props) => {
 
   const loginSubmit = (formObj) => {
     const { email, password } = formObj;
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        const { uid, email } = user;
-        props.getAuthData(uid, email);
-        props.handleAuthErr(true, "");
-      })
-      .catch((err) => {
-        if (err.message === "Firebase: Error (auth/user-not-found).") {
-          props.handleAuthErr(false, "Incorrect email");
-        } else {
-          if (err.message === "Firebase: Error (auth/wrong-password).") {
-            props.handleAuthErr(false, "Incorrect email or password");
-          }
-        }
-      });
+    props.signIn(email, password)
+    
   };
 
   return <Login {...props} loginSubmit={loginSubmit} />;
@@ -48,6 +32,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getAuthData, handleAuthErr })(
+export default connect(mapStateToProps, { getAuthData, handleAuthErr, signIn })(
   LoginContainer
 );

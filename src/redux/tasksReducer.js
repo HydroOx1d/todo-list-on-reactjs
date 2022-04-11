@@ -1,24 +1,17 @@
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, set, push, get} from "firebase/database";
 import { database } from "../firebaseConfig";
 
 let initialState = {
   tasks: [],
-  addTaskInputValue: "",
   detailTask: null,
 };
 
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD-TASK": {
+    case "GET-TASKS": {
       return {
         ...state,
         tasks: [...action.task],
-      };
-    }
-    case "REMOVE-TASK": {
-      return {
-        ...state,
-        tasks: state.tasks.filter((t) => t.id !== action.taskId),
       };
     }
     case "GET-DETAIL-TASK": {
@@ -32,24 +25,10 @@ export const tasksReducer = (state = initialState, action) => {
   }
 };
 
-const addTask = (task) => {
+const getTasks = (task) => {
   return {
-    type: "ADD-TASK",
+    type: "GET-TASKS",
     task,
-  };
-};
-
-export const removeTask = (taskId) => {
-  return {
-    type: "REMOVE-TASK",
-    taskId,
-  };
-};
-
-export const updateValue = (value) => {
-  return {
-    type: "UPDATE-INPUT-VALUE",
-    value,
   };
 };
 
@@ -71,7 +50,28 @@ export const getTasksData = (uid) => (dispatch) => {
         data: data[i],
       });
     }
-    dispatch(addTask(resultArr));
-    // console.log(resultArr)
+    dispatch(getTasks(resultArr));
   });
+};
+
+export const addTask = (uid, data) => {
+  const tasksList = ref(database, uid + "/tasks");
+  const newTask = push(tasksList);
+  set(newTask, data);
+};
+
+export const getDetailTaskThunk = (uid, taskId) => {
+  return (dispatch) => {
+    get(ref(database, uid + "/tasks/" + taskId))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          dispatch(getDetailTask(snapshot.val()));
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 };

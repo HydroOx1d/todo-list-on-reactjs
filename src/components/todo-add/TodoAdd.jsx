@@ -11,8 +11,8 @@ const TodoAdd = (props) => {
 
 
   const onAddTask = (formObj) => {
+    setAdding(!adding);
     props.onAddTask(formObj)
-    setAdding(false)
   };
 
   return (

@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import TodoAdd from "./TodoAdd";
-import { ref, set, push } from "firebase/database";
-import { database } from "../../firebaseConfig";
+import {addTask} from '../../redux/tasksReducer'
 import {dateAndTime} from '../common/dateformat/dateFormat'
 
 
@@ -19,14 +18,12 @@ const TodoAddContainer = (props) => {
       result += str[idx] + num[idx2];
     }
 
-    const tasksList = ref(database, props.uid + "/tasks");
-    const newTask = push(tasksList);
-    set(newTask, {
+    props.addTask(props.uid,{
       id: result,
-      date: dateAndTime('date'),
-      time: dateAndTime('time'),
-      status: 'In progress',
-      ...formObj
+      date: dateAndTime("date"),
+      time: dateAndTime("time"),
+      status: "In progress",
+      ...formObj,
     });
   };
 
@@ -35,10 +32,8 @@ const TodoAddContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    inputValue: state.todo.addTaskInputValue,
-    tasksLength: state.todo.tasks.length,
     uid: state.auth.uid,
   };
 };
 
-export default connect(mapStateToProps)(TodoAddContainer);
+export default connect(mapStateToProps, {addTask})(TodoAddContainer);

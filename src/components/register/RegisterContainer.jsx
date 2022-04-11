@@ -1,8 +1,6 @@
 import Register from "./Register";
-import { auth } from "../../firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { connect } from "react-redux";
-import { getAuthData, handleAuthErr } from "../../redux/authReducer.";
+import { getAuthData, handleAuthErr, signUp } from "../../redux/authReducer.";
 import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -19,17 +17,7 @@ const RegisterContainer = (props) => {
 
   const registerSubmit = (formObj) => {
     const { email, password } = formObj;
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        const { uid, email } = user;
-        props.getAuthData(uid, email);
-      })
-      .catch((err) => {
-        if (err.message === "Firebase: Error (auth/email-already-in-use).") {
-          props.handleAuthErr(false, "This email is already registered");
-        }
-      });
+    props.signUp(email, password)
   };
 
   return <Register {...props} registerSubmit={registerSubmit} />;
@@ -43,6 +31,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getAuthData, handleAuthErr })(
+export default connect(mapStateToProps, { getAuthData, handleAuthErr, signUp })(
   RegisterContainer
 );

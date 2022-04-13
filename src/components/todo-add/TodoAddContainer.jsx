@@ -18,7 +18,7 @@ const TodoAddContainer = (props) => {
       result += str[idx] + num[idx2];
     }
 
-    props.addTask(props.uid,{
+    addTask(props.uid,{
       id: result,
       date: dateAndTime("date"),
       time: dateAndTime("time"),
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {addTask})(TodoAddContainer);
+export default connect(mapStateToProps)(TodoAddContainer);

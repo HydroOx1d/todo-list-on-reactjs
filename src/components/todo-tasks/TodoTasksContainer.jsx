@@ -6,13 +6,14 @@ import TodoTasks from "./TodoTasks";
 const TodoTasksContainer = (props) => {
   useEffect(() => {
     props.getTasksData(props.uid);
-  });
+  }, [props.tasksLength]);
   return <TodoTasks {...props} />;
 };
 
 const mapStateToProps = (state) => {
   return {
     uid: state.auth.uid,
+    tasksLength: state.todo.tasks.length
   };
 };
 

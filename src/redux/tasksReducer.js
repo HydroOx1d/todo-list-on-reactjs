@@ -40,7 +40,7 @@ export const getDetailTask = (taskData) => {
 };
 
 export const getTasksData = (uid) => (dispatch) => {
-  const tasksRef = ref(database, uid + "/tasks");
+  const tasksRef = ref(database, 'users/' + uid + "/tasks");
   onValue(tasksRef, (snapshot) => {
     const data = snapshot.val();
     let resultArr = [];
@@ -55,14 +55,14 @@ export const getTasksData = (uid) => (dispatch) => {
 };
 
 export const addTask = (uid, data) => {
-  const tasksList = ref(database, uid + "/tasks");
+  const tasksList = ref(database, 'users/' + uid + "/tasks");
   const newTask = push(tasksList);
   set(newTask, data);
 };
 
 export const getDetailTaskThunk = (uid, taskId) => {
   return (dispatch) => {
-    get(ref(database, uid + "/tasks/" + taskId))
+    get(ref(database, 'users/' + uid + "/tasks/" + taskId))
       .then((snapshot) => {
         if (snapshot.exists()) {
           dispatch(getDetailTask(snapshot.val()));

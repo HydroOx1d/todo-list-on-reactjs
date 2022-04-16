@@ -2,10 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import TodoAdd from "./TodoAdd";
 import {addTask} from '../../redux/tasksReducer'
-import {dateAndTime} from '../common/dateformat/dateFormat'
+import {useState} from 'react'
 
 
 const TodoAddContainer = (props) => {
+
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
 
   const onAddTask = (formObj) => {
     let result = "";
@@ -18,16 +21,25 @@ const TodoAddContainer = (props) => {
       result += str[idx] + num[idx2];
     }
 
-    addTask(props.uid,{
+    addTask(props.uid, {
       id: result,
-      date: dateAndTime("date"),
-      time: dateAndTime("time"),
+      startDate: startDate.toLocaleDateString(),
+      endDate: endDate.toLocaleDateString(),
       status: "In progress",
       ...formObj,
     });
   };
 
-  return <TodoAdd {...props} onAddTask={onAddTask}/>;
+  return (
+    <TodoAdd
+      {...props}
+      onAddTask={onAddTask}
+      startDate={startDate}
+      setStartDate={setStartDate}
+      endDate={endDate}
+      setEndDate={setEndDate}
+    />
+  );
 };
 
 const mapStateToProps = (state) => {

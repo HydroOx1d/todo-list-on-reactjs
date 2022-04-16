@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 import './TodoAdd.css'
 import { Form, Field } from 'react-final-form';
 import Plus from '../../assets/plus.png'
@@ -32,7 +34,10 @@ const TodoAdd = (props) => {
             <div className="modal add-modal">
               <div className="add-modal__header">
                 <h2>Add task</h2>
-                <div onClick={() => setAdding(false)} className="add-modal__close">
+                <div
+                  onClick={() => setAdding(false)}
+                  className="add-modal__close"
+                >
                   <img src={Close} alt="close" />
                 </div>
               </div>
@@ -64,6 +69,22 @@ const TodoAdd = (props) => {
                             {...input}
                             placeholder="Description"
                           />
+                        )}
+                      </Field>
+                    </div>
+                    <div className="add-modal__dates">
+                      <Field name="startDate">
+                        {() => (
+                          <>
+                            <DatePicker
+                              selected={props.startDate}
+                              onChange={(date) => props.setStartDate(date)}
+                            />
+                            <DatePicker
+                              selected={props.endDate}
+                              onChange={(date) => props.setEndDate(date)}
+                            />
+                          </>
                         )}
                       </Field>
                     </div>

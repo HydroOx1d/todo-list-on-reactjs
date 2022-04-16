@@ -21,6 +21,7 @@ const App = (props) => {
               <Route path="/login" element={<LoginContainer />} />
               <Route path="/register" element={<RegisterContainer />} />
               <Route path="/task/:id" element={<TodoDetailContainer />} />
+              <Route path="*" element={ <div><h1>404 NOT FOUND</h1></div> }/>
             </Routes>
           </Suspense>
         </div>

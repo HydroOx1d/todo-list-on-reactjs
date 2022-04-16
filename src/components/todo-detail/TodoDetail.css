@@ -1,0 +1,42 @@
+.task-detail {
+  max-width: 500px;
+  margin: 0 auto ;
+  padding: 100px 10px;
+}
+
+.task-detail-desc {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.task-detail__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.task-detail__button button {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+}
+
+.goto-main {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.goto-main span {
+  font-size: 18px;
+  margin-left: 10px;
+}

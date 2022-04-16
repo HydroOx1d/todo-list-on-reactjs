@@ -15,8 +15,8 @@ const TodoTasks = (props) => {
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>date of addition</th>
-              <th>time of addition</th>
+              <th>Start date</th>
+              <th>End date</th>
               <th>Status</th>
               <th></th>
             </tr>
@@ -41,8 +41,8 @@ const TodoTasks = (props) => {
                       ? task.data.title.split("").slice(0, 20).join("") + "..."
                       : task.data.title}
                   </td>
-                  <td>{task.data.date}</td>
-                  <td>{task.data.time}</td>
+                  <td>{task.data.startDate}</td>
+                  <td>{task.data.endDate}</td>
                   <td>{task.data.status}</td>
                   <td className="todo-task__link">
                     <NavLink to={'/task/' + task.taskId}>Show more</NavLink>

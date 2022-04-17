@@ -81,6 +81,9 @@ const TodoAdd = (props) => {
                               <DatePicker
                                 selected={props.startDate}
                                 onChange={(date) => props.setStartDate(date)}
+                                timeInputLabel="Time:"
+                                dateFormat={"MM/dd/yyyy h:mm aa"}
+                                showTimeInput
                               />
                             </div>
                             <div>
@@ -88,6 +91,9 @@ const TodoAdd = (props) => {
                               <DatePicker
                                 selected={props.endDate}
                                 onChange={(date) => props.setEndDate(date)}
+                                timeInputLabel="Time:"
+                                dateFormat={"MM/dd/yyyy h:mm aa"}
+                                showTimeInput
                               />
                             </div>
                           </>

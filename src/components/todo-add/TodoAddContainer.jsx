@@ -23,8 +23,8 @@ const TodoAddContainer = (props) => {
 
     addTask(props.uid, {
       id: result,
-      startDate: startDate.toLocaleDateString(),
-      endDate: endDate.toLocaleDateString(),
+      startDate: startDate.toLocaleString(),
+      endDate: endDate.toLocaleString(),
       status: "In progress",
       ...formObj,
     });

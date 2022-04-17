@@ -76,14 +76,20 @@ const TodoAdd = (props) => {
                       <Field name="startDate">
                         {() => (
                           <>
-                            <DatePicker
-                              selected={props.startDate}
-                              onChange={(date) => props.setStartDate(date)}
-                            />
-                            <DatePicker
-                              selected={props.endDate}
-                              onChange={(date) => props.setEndDate(date)}
-                            />
+                            <div>
+                              <div>Start Date</div>
+                              <DatePicker
+                                selected={props.startDate}
+                                onChange={(date) => props.setStartDate(date)}
+                              />
+                            </div>
+                            <div>
+                              <div>End Date</div>
+                              <DatePicker
+                                selected={props.endDate}
+                                onChange={(date) => props.setEndDate(date)}
+                              />
+                            </div>
                           </>
                         )}
                       </Field>

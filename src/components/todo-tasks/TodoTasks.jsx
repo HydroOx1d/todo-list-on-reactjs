@@ -1,10 +1,7 @@
 import "./TodoTasks.css";
 import { NavLink } from "react-router-dom";
 
-// Function of delete task
-//import { database } from "../../firebaseConfig";
-//import {remove, ref} from 'firebase/database'
-//remove(ref(database, props.uid + "/tasks/" + task.taskId));
+
 
 const TodoTasks = (props) => {
   return (

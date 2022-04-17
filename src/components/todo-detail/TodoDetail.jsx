@@ -21,7 +21,11 @@ const TodoDetail = (props) => {
       </div>
       <div className="task-detail-desc task-detail__description">
         <div className="title">Description:</div>
-        <p>{props.detailTask.description}</p>
+        <p>
+          {props.detailTask.description
+            ? props.detailTask.description
+            : "Description not specified"}
+        </p>
       </div>
       <div className="status task-detail-desc task-detail__status">
         <div className="title">Status:</div>
@@ -30,10 +34,21 @@ const TodoDetail = (props) => {
 
       <div className="task-detail__buttons">
         <div className="task-detail__button">
-          <button className="button button-blue">Change</button>
+          <button
+            disabled={props.detailTask.status === "Completed" && true}
+            onClick={() => props.completeTask()}
+            className="button button-blue"
+          >
+            {props.detailTask.status === "Completed" ? "Completed" : 'Complete'}
+          </button>
         </div>
         <div className="task-detail__button">
-          <button className="button button-red">Delete</button>
+          <button
+            onClick={() => props.onRemoveTask()}
+            className="button button-red"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
